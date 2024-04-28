@@ -213,8 +213,9 @@ func TestFilterSuppression(t *testing.T) {
 }
 
 func TestIsSuppressionExpired(t *testing.T) {
-	suppression := Suppression{Until: "2024-01-01Z"}
 	untilDateFlag = new(string)
+
+	suppression := Suppression{Until: "2024-01-01Z"}
 
 	*untilDateFlag = "2024-12-31Z"
 	if !isSuppressionExpired(&suppression) {
@@ -226,14 +227,14 @@ func TestIsSuppressionExpired(t *testing.T) {
 		t.Errorf("Suppression should be expired")
 	}
 
-	*untilDateFlag = "2023-01-01Z"
-	if isSuppressionExpired(&suppression) {
-		t.Errorf("Suppression should not be expired")
-	}
-
 	*untilDateFlag = "2024-01-01Z"
 	if !isSuppressionExpired(&suppression) {
 		t.Errorf("Suppression should be expired")
+	}
+
+	*untilDateFlag = "2023-01-01Z"
+	if isSuppressionExpired(&suppression) {
+		t.Errorf("Suppression should not be expired")
 	}
 
 	*untilDateFlag = "never"
@@ -241,8 +242,34 @@ func TestIsSuppressionExpired(t *testing.T) {
 		t.Errorf("Suppression should not be expired")
 	}
 
-	suppression.Until = ""
+	func() {
+		defer func() {
+			if r := recover(); r == nil {
+				t.Errorf("isSuppressionExpired did not panic")
+			}
+		}()
+
+		*untilDateFlag = "1980-invalid-date"
+		captureOutput(func() {
+			isSuppressionExpired(&suppression)
+		})
+	}()
+
+	suppression.Until = "2025-invalid-date"
+
 	*untilDateFlag = "1980-01-01Z"
+	if !isSuppressionExpired(&suppression) {
+		t.Errorf("Suppression should be expired")
+	}
+
+	suppression.Until = ""
+
+	*untilDateFlag = "1980-01-01Z"
+	if isSuppressionExpired(&suppression) {
+		t.Errorf("Suppression should not be expired")
+	}
+
+	*untilDateFlag = "2025-12-12Z"
 	if isSuppressionExpired(&suppression) {
 		t.Errorf("Suppression should not be expired")
 	}
