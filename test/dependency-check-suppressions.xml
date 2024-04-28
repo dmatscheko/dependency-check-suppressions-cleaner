@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+	<suppress>
+		<notes><![CDATA[
+   file name: guava-23.6-jre.jar
+   Package match via packageUrl. This entry should be kept.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+		<cpe>cpe:/a:google:guava</cpe>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: detekt-api-1.18.1.jar
+   First part for merger. This entry should be merged.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/io\.gitlab\.arturbosch\.detekt/detekt\-.*@.*$</packageUrl>
+		<cpe>cpe:/a:detekt:detekt</cpe>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: kotlin-analysis-intellij-1.6.21.jar (shaded: org.jetbrains.intellij.deps:log4j:1.2.17.2)
+   Package match via packageUrl without regex. This entry should be kept.
+   ]]></notes>
+		<packageUrl>pkg:maven/org.jetbrains.intellij.deps/log4j@1.2.17.2</packageUrl>
+		<cpe>cpe:/a:apache:log4j</cpe>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: detekt-core-1.18.1.jar
+   Package match via GAV. This entry should be kept.
+   ]]></notes>
+		<gav regex="true">io\.gitlab\.arturbosch\.detekt:detekt\-core:.*</gav>
+		<cve>CVE-2022-0272</cve>
+	</suppress>
+	<suppress until="2024-06-01Z">
+		<notes><![CDATA[
+   file name: jna-5.6.0.aar
+   First part for merger. Also contains until. This entry should be merged and kept until exclusive 2024-06-01Z.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/net\.java\.dev\.jna/jna@.*$</packageUrl>
+		<cve>CVE-2009-2476</cve>
+		<cve>CVE-2009-2689</cve>
+		<cve>CVE-1999-0142</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: woodstox-core-6.2.1.jar
+   Match via filePath. This entry should be kept.
+   ]]></notes>
+		<filePath regex="true">.*[/\\]woodstox-core-6\.2\.4\.jar</filePath>
+		<vulnerabilityName>CVE-2022-40152</vulnerabilityName>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: ktor-network-tls-jvm-2.1.2.jar
+   Vulnerability CVE matcher via regex (possible via vulnerabilityName). This entry should be kept.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/io\.ktor/ktor\-network\-tls\-jvm@.*$</packageUrl>
+		<vulnerabilityName regex="true">CVE-2023-456\d+</vulnerabilityName>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: symbol-processing-1.8.21-1.0.11.jar
+   CVE-2018-1234567 is not in the dependencies and should be removed.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/com\.google\.devtools\.ksp/symbol\-processing@.*$</packageUrl>
+		<cve>CVE-2018-1000840</cve>
+		<cve>CVE-2018-1234567</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: jackson-databind-2.11.1.jar
+   jackson-databind is not in the dependencies. This entry should be removed.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
+		<cve>CVE-2020-36518</cve>
+		<cve>CVE-2022-42003</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: okio-jvm-2.8.0.jar
+   okio-jvm is not in the dependencies. This entry should be removed.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/com\.squareup\.okio/okio@.*$</packageUrl>
+		<vulnerabilityName>CVE-2023-3635</vulnerabilityName>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+		Suppresses CVE-2009-2717 in all dependencies. This entry should be kept and merged with all other entries without package identifier.
+   ]]></notes>
+		<cve>CVE-2009-2717</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+		Suppresses CVE-2009-2475 in jna-5.8.0.aar and matches via SHA1. This entry should be kept.
+   ]]></notes>
+		<sha1>1ff7326d3e9227797ca03632c72665d091ab8a0d</sha1>
+		<cve>CVE-2009-2475</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: jna-5.6.0.aar
+   Doubled <cve>CVE-2009-2476</cve> and <cve>CVE-2009-2689</cve>, but without until. This entry should be kept.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/net\.java\.dev\.jna/jna@.*$</packageUrl>
+		<cve>CVE-2009-2476</cve>
+		<cve>CVE-2009-2689</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   file name: detekt-api-1.18.1.jar
+   This is a second entry for detekt-api and should be merged.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/io\.gitlab\.arturbosch\.detekt/detekt\-.*@.*$</packageUrl>
+		<cpe>cpe:/a:detekt:detekt</cpe>
+	</suppress>
+	<suppress until="2024-06-01Z">
+		<notes><![CDATA[
+   file name: jna-5.6.0.aar
+   CVE-1999-0440 is only in this one and should be merged and kept until exclusive 2024-06-01Z.
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/net\.java\.dev\.jna/jna@.*$</packageUrl>
+		<cve>CVE-1999-0142</cve>
+		<cve>CVE-1999-0440</cve>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   This supresses CVE Scores below 1.3. This entry should be kept and merged with all other entries without package identifier.
+   ]]></notes>
+		<cvssBelow>1.3</cvssBelow>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   This supresses CVE Scores below 1.2. This entry should be removed.
+   ]]></notes>
+		<cvssBelow>1.2</cvssBelow>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   This supresses CWE 123456. This entry should be kept and merged with all other entries without package identifier.
+   ]]></notes>
+		<cwe>123456</cwe>
+	</suppress>
+	<suppress>
+		<notes><![CDATA[
+   This supresses CWE 1234567. This entry should be removed.
+   ]]></notes>
+		<cwe>1234567</cwe>
+	</suppress>
+	<suppress until="2024-01-01Z">
+		<notes><![CDATA[
+   This supresses CWE 789789. This entry should be removed after 2024-01-01Z.
+   ]]></notes>
+		<cwe>789789</cwe>
+	</suppress>
+</suppressions>
